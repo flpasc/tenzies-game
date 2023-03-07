@@ -9,7 +9,7 @@ body {
 
 .game {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	background-color: rgb(243, 243, 243);
@@ -17,6 +17,7 @@ body {
 	height: 600px;
 	border: 30px solid black;
 	padding: 10px;
+	border-radius: 10px;
 }
 
 .dice {
@@ -40,4 +41,18 @@ body {
 
 .dice--num {
 	font-size: 2rem;
+}
+
+.button-reroll {
+	margin: 40px;
+	padding: 14px 40px;
+	background-color: rgb(124, 222, 124);
+	border: none;
+	box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.443);
+	cursor: pointer;
+}
+
+.button-reroll:active {
+	box-shadow: inset 2px 2px 8px -3px rgba(0, 0, 0, 0.443);
+	transform: scale(0.99);
 }
