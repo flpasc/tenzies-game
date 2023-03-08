@@ -3,5 +3,5 @@
 - practicing useState
 - practicing useEffect
 - conditional rendering
-- javascript map, filter, every operators
+- javascript map, filter, and every
 - css
