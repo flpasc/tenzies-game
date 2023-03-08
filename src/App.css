@@ -72,3 +72,9 @@ body {
 	box-shadow: inset 2px 2px 8px -3px rgba(80, 136, 165, 0.443);
 	transform: scale(0.99);
 }
+
+.dice-rolls,
+.dice-best {
+	margin: 5px;
+	color: rgb(165, 165, 165);
+}

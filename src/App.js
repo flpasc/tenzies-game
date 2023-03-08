@@ -7,10 +7,15 @@ import ReactConfetti from "react-confetti";
 export default function App() {
 	const [diceArray, setDiceArray] = useState(allNewDice());
 	const [tenzies, setTenzies] = useState(false);
+	const [rolls, setRolls] = useState(0);
+	const [best, setBest] = useState(() => JSON.parse(localStorage.getItem("best")) || 100);
 
 	useEffect(() => {
-		tenzies ? console.log("you won") : console.log("");
-	}, [tenzies]);
+		if (tenzies && rolls < best) {
+			localStorage.setItem("best", JSON.stringify(rolls));
+			setBest(rolls);
+		}
+	}, [tenzies, rolls, best]);
 
 	useEffect(() => {
 		setTenzies(() => {
@@ -52,8 +57,10 @@ export default function App() {
 	function rollDice() {
 		if (tenzies) {
 			setTenzies(false);
+			setRolls(0);
 			setDiceArray(allNewDice());
 		} else {
+			setRolls((prevRoll) => prevRoll + 1);
 			setDiceArray((prevArray) => {
 				return prevArray.map((dice) => {
 					return dice.isHeld ? dice : generateNewDice();
@@ -82,6 +89,8 @@ export default function App() {
 			<button className="button-reroll" onClick={rollDice}>
 				{tenzies ? "New Game" : "Roll"}
 			</button>
+			<div className="dice-rolls">Rolls: {rolls}</div>
+			<div className="dice-best">Personal Best: {best}</div>
 		</main>
 	);
 }
