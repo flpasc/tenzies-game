@@ -2,6 +2,7 @@ import "./App.css";
 import Dice from "./components/Dice";
 import React, { useState, useEffect } from "react";
 import uuid from "react-uuid";
+import ReactConfetti from "react-confetti";
 
 export default function App() {
 	const [diceArray, setDiceArray] = useState(allNewDice());
@@ -49,11 +50,16 @@ export default function App() {
 	}
 
 	function rollDice() {
-		setDiceArray((prevArray) => {
-			return prevArray.map((dice) => {
-				return dice.isHeld ? dice : generateNewDice();
+		if (tenzies) {
+			setTenzies(false);
+			setDiceArray(allNewDice());
+		} else {
+			setDiceArray((prevArray) => {
+				return prevArray.map((dice) => {
+					return dice.isHeld ? dice : generateNewDice();
+				});
 			});
-		});
+		}
 	}
 
 	function holdDice(id) {
@@ -72,8 +78,9 @@ export default function App() {
 				rolls.
 			</p>
 			<div className="dice--area">{diceElements} </div>
+			{tenzies && <ReactConfetti />}
 			<button className="button-reroll" onClick={rollDice}>
-				Roll
+				{tenzies ? "New Game" : "Roll"}
 			</button>
 		</main>
 	);
